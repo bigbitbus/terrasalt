@@ -47,8 +47,10 @@ Fig. 1 shows the timing diagram of a VM lifecycle. The important phases are mark
 #### Configuring the salt-master for  salt-api
 
 We need to install [salt-api](https://docs.saltstack.com/en/latest/ref/netapi/all/salt.netapi.rest_cherrypy.html) server into the salt-master and setup a "terrasalt" user whose credentials can be used to authenticate requests being sent to the salt-api server running on the salt-master. We have included a simple script along with descriptions of each command below. Use the script as a starting point and adapt it to your setup.
-``` Bash script to setup salt-api and terrasalt user
+
+```bash
 #!/bin/bash
+
 #Usage: terrasalt_configure_salt-master.sh <https port> <terrasalt_user_password>
 # e.g. (as root user)
 # ./terrasalt_configure_salt-master.sh 443 sUp3r53cr3T
