@@ -45,20 +45,20 @@ service salt-api restart
 # -d eauth='pam'
 
 #You should see something like
-{
-  "return": [
-    {
-      "perms": [
-        "@wheel"
-      ],
-      "start": 153327418.78768,
-      "token": "408f5b43b4ac36a5c5ffa6e1502027000528",
-      "expire": 153290618.787681,
-      "user": "terrasalt",
-      "eauth": "pam"
-    }
-  ]
-}
+#{
+#  "return": [
+#    {
+#      "perms": [
+#        "@wheel"
+#      ],
+#      "start": 153327418.78768,
+#      "token": "408f5b43b4ac36a5c5ffa6e1502027000528",
+#      "expire": 153290618.787681,
+#      "user": "terrasalt",
+#      "eauth": "pam"
+#    }
+#  ]
+#}
 
 #You should see something like
 #curl -k  https://saltmaster.com:8000/ \
@@ -66,33 +66,33 @@ service salt-api restart
 # -H "X-Auth-Token: TOKEN_RECEIVED_ABOVE"   
 # -d client='wheel' 
 # -d fun='key.list_all'
-
-{
-  "return": [
-    {
-      "tag": "salt/wheel/201808020425106733",
-      "data": {
-        "jid": "201808022204206733",
-        "return": {
-          "local": [
-            "master.pem",
-            "master.pub"
-          ],
-          "minions_rejected": [],
-          "minions_denied": [],
-          "minions_pre": [],
-          "minions": [
-            "salt-master",
-            "some-other-minion"
-          ]
-        },
-        "success": true,
-        "_stamp": "2018-08-02T22:04:25.120663",
-        "tag": "salt/wheel/201808022204256733",
-        "user": "terrasalt",
-        "fun": "wheel.key.list_all"
-      }
-    }
-  ]
-}
+#
+#{
+#  "return": [
+#    {
+#      "tag": "salt/wheel/201808020425106733",
+#      "data": {
+#        "jid": "201808022204206733",
+#        "return": {
+#          "local": [
+#            "master.pem",
+#            "master.pub"
+#          ],
+#          "minions_rejected": [],
+#          "minions_denied": [],
+#          "minions_pre": [],
+#          "minions": [
+#            "salt-master",
+#            "some-other-minion"
+#          ]
+#        },
+#        "success": true,
+#        "_stamp": "2018-08-02T22:04:25.120663",
+#        "tag": "salt/wheel/201808022204256733",
+#        "user": "terrasalt",
+#        "fun": "wheel.key.list_all"
+#      }
+#    }
+#  ]
+#}
 
