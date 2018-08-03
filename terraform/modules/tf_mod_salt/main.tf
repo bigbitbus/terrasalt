@@ -19,7 +19,7 @@ resource "null_resource" "install_configure_salt" {
   }
 
   provisioner "local-exec" {
-    command = "docker exec -i  ${var.docker_minion} salt-call  event.fire_master \"{'acceptedminion':'${var.minion_id}'}\" salt/minion/accept"
+    command = "  ${var.docker_minion} salt-call  event.fire_master \"{'acceptedminion':'${var.minion_id}'}\" salt/minion/accept"
   }
 
   provisioner "local-exec" {

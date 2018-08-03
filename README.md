@@ -21,6 +21,16 @@ You will be adding the Terrasalt module to your terraform infrastructure-as-code
 
 1. A configured salt-master capable of being connected from the new VMs that terraform spins up and capable of running salt API.
 2. Ability for the terraform machine to send an HTTP(s) request to the salt-master (any firewall issues to allow connecting from the Terraform machine to the salt-master via HTTPS on port 443).
+3. Python is installed on the terraform machine. Also, please install the requests python package.
+```
+# In the shell you use to run terraform commands run
+
+# *nix
+python -m pip install requests
+
+# Windows
+python.exe -m pip install requests
+```
 
 ### Architecture
 
@@ -46,7 +56,7 @@ Fig. 1 shows the timing diagram of a VM lifecycle. The important phases are mark
 
 #### Configuring the salt-master for  salt-api
 
-We need to install [salt-api](https://docs.saltstack.com/en/latest/ref/netapi/all/salt.netapi.rest_cherrypy.html) server into the salt-master and setup a "terrasalt" user whose credentials can be used to authenticate requests being sent to the salt-api server running on the salt-master. We have included a simple script along with descriptions of each command below. Use the script as a starting point and adapt it to your setup.
+We need to install the [salt-api](https://docs.saltstack.com/en/latest/ref/netapi/all/salt.netapi.rest_cherrypy.html) server into the salt-master and setup a "terrasalt" user whose credentials can be used to authenticate requests being sent to the salt-api server running on the salt-master. We have included a simple script along with descriptions of each command below. Use the script as a starting point and adapt it to your setup.
 
 ```bash
 #!/bin/bash
@@ -158,7 +168,7 @@ Returned data:
 
 ```
 
-#### Using the 
+#### The Terrasalt module
 
 
 

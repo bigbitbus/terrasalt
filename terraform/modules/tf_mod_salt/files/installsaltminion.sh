@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+cd /tmp
+curl -o bootstrap-salt.sh -L https://bootstrap.saltstack.com
+sudo sh bootstrap-salt.sh $4
 curl -L https://bootstrap.saltstack.com | sudo sh
 mkdir -p /etc/salt/minion.d/
 cat << EOF | sudo tee /etc/salt/minion.d/min.conf
