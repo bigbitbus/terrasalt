@@ -19,11 +19,11 @@ resource "null_resource" "install_configure_salt" {
   }
 
   provisioner "local-exec" {
-    command = "  ${var.docker_minion} salt-call  event.fire_master \"{'acceptedminion':'${var.minion_id}'}\" salt/minion/accept"
+    command = "python ${path.module}/files/httpsrequests.py  ${var.minion_id} key.accept"
   }
 
   provisioner "local-exec" {
-    command = "docker exec -i  ${var.docker_minion} salt-call  event.fire_master \"{'deletedminion':'${var.minion_id}'}\" salt/minion/delete"
+    command = "python ${path.module}/files/httpsrequests.py  ${var.minion_id} key.delete"
     when = "destroy"
   }
 }
