@@ -5,23 +5,15 @@ import sys
 from traceback import format_exc
 
 
-def saltapi_server_url(salt_master_host=None,
-                       saltapi_port=None,
-                       saltapi_proto=None):
+def saltapi_server_url():
     """
     Return the url of the saltapi server
-    :param salt_master_host: hostname or IP of saltapi server
-    :param saltapi_port: saltapi port
-    :param saltapi_proto: either HTTP or HTTPS
-    :return:
+    :return: URL of the saltapi server
     """
     try:
-        if salt_master_host == None:
-            salt_master_host = os.environ.get("SALT_MASTER_HOST")
-        if saltapi_port == None:
-            saltapi_port = os.environ.get("SALTAPI_PORT")
-        if saltapi_proto == None:
-            saltapi_proto = os.environ.get("SALTAPI_PROTO")
+        salt_master_host = os.environ.get("SALT_MASTER_HOST")
+        saltapi_port = os.environ.get("SALTAPI_PORT")
+        saltapi_proto = os.environ.get("SALTAPI_PROTO")
 
         return saltapi_proto + "://" + \
                salt_master_host + ":" + \
@@ -31,36 +23,20 @@ def saltapi_server_url(salt_master_host=None,
         raise
 
 
-def get_saltapi_token(salt_master_host=None,
-                      saltapi_port=None,
-                      saltapi_username=None,
-                      saltapi_password=None,
-                      saltapi_eauth=None,
-                      saltapi_ssl_verify=None):
+def get_saltapi_token():
     """
     Get an auth token from the salt-api server.
     This function assumes that the environment variables
     shown below are available in the OS envinonment.
-    :param salt_master_host:
-    :param saltapi_port:
-    :param saltapi_username:
-    :param saltapi_password:
-    :param saltapi_eauth:
-    :param saltapi_ssl_verify:
-    :return:
+    :return: Auth token
     """
 
     try:
-
-        if saltapi_username == None:
-            saltapi_username = os.environ.get("SALTAPI_USERNAME")
-        if saltapi_password == None:
-            saltapi_password = os.environ.get("SALTAPI_PASSWORD")
-        if saltapi_eauth == None:
-            saltapi_eauth = os.environ.get("SALTAPI_EAUTH")
-        if saltapi_ssl_verify == None:
-            saltapi_ssl_verify = os.environ.get("SALTAPI_SSL_VERIFY") \
-                                 in set(['True', 'true', 'Yes', 'yes', '1'])
+        saltapi_username = os.environ.get("SALTAPI_USERNAME")
+        saltapi_password = os.environ.get("SALTAPI_PASSWORD")
+        saltapi_eauth = os.environ.get("SALTAPI_EAUTH")
+        saltapi_ssl_verify = os.environ.get("SALTAPI_SSL_VERIFY") \
+                             in set(['True', 'true', 'Yes', 'yes', '1'])
 
         url = saltapi_server_url() + "/login"
         payload = {'eauth': saltapi_eauth,
@@ -83,7 +59,7 @@ def get_saltapi_token(salt_master_host=None,
         raise
 
 
-def wheel_minion(minion_name, fun, saltapi_ssl_verify = None):
+def wheel_minion(minion_name, fun):
     """
     curl -k  https://sriharikota.bigbitbus.com:8000/ -H "Accept: application/json" -H "X-Auth-Token: 7e5442854dd2ecaa5d98fb8732761f5c5dca7df4"   -d client='wheel' -d fun='key.accept' -d match="T_Client"
     :param minion_name: name of the minion
@@ -91,9 +67,8 @@ def wheel_minion(minion_name, fun, saltapi_ssl_verify = None):
     :return:
     """
     try:
-        if saltapi_ssl_verify == None:
-            saltapi_ssl_verify = os.environ.get("SALTAPI_SSL_VERIFY") \
-                                 in set(['True', 'true', 'Yes', 'yes', '1'])
+        saltapi_ssl_verify = os.environ.get("SALTAPI_SSL_VERIFY") \
+                             in set(['True', 'true', 'Yes', 'yes', '1'])
         url = saltapi_server_url()
         headers = {
             "Accept": "application/json",
@@ -120,7 +95,7 @@ if __name__ == "__main__":
     print(wheel_minion(sys.argv[1],sys.argv[2]))
 
 
-# #Here is an example of environment variables that would work
+# #Here is an example of environment variables that need to be set
 # export SALT_MASTER_HOST=yoursaltmaster.com
 # export SALTAPI_PORT=8001
 # export SALTAPI_PASSWORD=saltterra
