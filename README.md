@@ -186,6 +186,8 @@ We have packaged up the salt-minion software installation and key acceptance/del
 
 Be very mindful of when using your cloud credentials - _never-ever check them into version control!_. We have used environment variables to access all cloud credentials in this project (we assumed that the terraform machine is secured).
 
+You can use the examples as starting points for using the terrasalt module with your cloud provider of choice. The full list of terraform supported cloud providers is [here](https://www.terraform.io/docs/providers/).
+
 ## FAQs
 1. _Why not just use salt cloud?_ If your cloud provider is well supported by salt cloud then salt cloud should be your first choice; in our case since we spin up VMs in providers that are not (well) supported by salt cloud we chose to go with Terraform. Terraform is the leader in multi-cloud orchestration software today.
 2. _When will Windows minions and windows terraform clients be supported?_ Very soon, this is an active focus area for us.
