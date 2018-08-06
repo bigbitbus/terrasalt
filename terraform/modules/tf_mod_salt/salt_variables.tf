@@ -1,8 +1,3 @@
-variable "docker_minion" {
-  type        = "string"
-  description = "The docker container running the T_Client minion"
-}
-
 variable "key_path" {
   type        = "string"
   description = "The ssh private key file path used in connections"
@@ -18,6 +13,11 @@ variable "ip" {
   description = "IP of the minion; this could be the private IP if the salt-master is reachable from the private network or it could be the public IP of the VM"
 }
 
+variable "salt_master" {
+  type = "string"
+  description = "FQDN or IP address of the salt-master"
+}
+
 variable "minion_id" {
   type = "string"
   description = "This is the minion_id of the VM being created/salted"
@@ -29,23 +29,8 @@ variable "salt_bootstrap_options" {
   default = ""
 }
 
-variable "salt_master" {
-  type = "string"
-  description = "salt-master FQDN or IP address"
-}
-
-variable "saltapi_user" {
-  type = "string"
-  description = "the salt api user e.g. terrasalt mentioned in the documentation"
-}
-
-variable "saltapi_password" {
-  type = "string"
-  description = "the salt api user's password"
-}
-
 variable "platformgrain" {
   type        = "string"
-  description = "Just an example of how a custom grain can be set"
-  default = "Doesn't matter"
+  description = "An example of a static grain being set in the minion host"
 }
+

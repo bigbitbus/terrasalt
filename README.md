@@ -97,7 +97,7 @@ service salt-master restart
 service salt-api restart
 ```
 
-If everything goes well then you can test the setup from your terraform machine. curl the following commands and check if the outputs are similar to the ones pasted below:
+If everything goes well then you can test the setup from your terraform machine. curl the following commands to check if the outputs are similar to the ones pasted below:
 
 ```bash
 $.curl -ski https://saltmaster.com:$1/login \
@@ -107,7 +107,7 @@ $.curl -ski https://saltmaster.com:$1/login \
  -d eauth='pam' \
  | python -m json.tool
 ```
-Piping the output to the python json tool is optional; it simply pretty prints the json output. 
+Piping the output to the python json tool is optional; it pretty prints the json output. 
 ```json
 {
   "return": [
@@ -125,15 +125,23 @@ Piping the output to the python json tool is optional; it simply pretty prints t
 }
 
 ```
+If you instead see an error, consider these potential issues:
+1. Is there a firewall blocking the saltapi port.
+2. Has the salt-api server successfully started (check the process and the logs at `/var/log/salt/api` on the salt-master).
+3. Have you entered the salt-api URL, username and password correctly?
+4. Check the SSL configuration; as well as check if salt-api was previously configured with different settings in the `/etc/salt` configuration files.
+
+
 
 The token can now be used to access salt-api (the terrasalt user is limited to salt wheel commands as per our salt-master configuration above). For example:
 ```bash
-
+# Note - we are asking curl to ignore self-issued SSL certificates; a better way would be to add the self-issued SSL certificate to our terraform machine. 
 $.curl -k  https://saltmaster.com:8000/ \
  -H "Accept: application/json" 
  -H "X-Auth-Token: 408f5b43b4ac36a5c5ffa6e1502027000528"   
  -d client='wheel' 
- -d fun='key.list_all'
+ -d fun='key.list_all' \
+  | python -m json.tool
 ```
 Returned data:
 ```json

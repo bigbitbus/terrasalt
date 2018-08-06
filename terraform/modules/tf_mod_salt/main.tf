@@ -2,7 +2,7 @@ resource "null_resource" "install_configure_salt" {
   connection {
     user = "${var.ssh_user}"
     private_key = "${file(var.key_path)}"
-    host = "${var.public_ip}"
+    host = "${var.ip}"
   }
 
   provisioner "file" {
@@ -13,7 +13,7 @@ resource "null_resource" "install_configure_salt" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/installsaltminion.sh",
-      "sudo /tmp/installsaltminion.sh ${ var.salt_master} ${var.minion_id} ${var.platformgrain}",
+      "sudo /tmp/installsaltminion.sh ${var.salt_master} ${var.minion_id} ${var.platformgrain}",
     ]
     on_failure = "continue"
   }

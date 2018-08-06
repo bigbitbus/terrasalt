@@ -3,7 +3,7 @@ import json
 import os
 import sys
 from traceback import format_exc
-
+from time import sleep
 
 def saltapi_server_url():
     """
@@ -11,7 +11,8 @@ def saltapi_server_url():
     :return: URL of the saltapi server
     """
     try:
-        salt_master_host = os.environ.get("SALT_MASTER_HOST")
+        # Env variable TF_VAR_salt_master also used by Terraform
+        salt_master_host = os.environ.get("TF_VAR_salt_master")
         saltapi_port = os.environ.get("SALTAPI_PORT")
         saltapi_proto = os.environ.get("SALTAPI_PROTO")
 
@@ -66,6 +67,8 @@ def wheel_minion(minion_name, fun):
     :param fun: function to execute - key.accept or key.delete
     :return:
     """
+    if fun == "key.accept":
+        sleep(10) #Need this because salt minion doesn't send key in time while starting
     try:
         saltapi_ssl_verify = os.environ.get("SALTAPI_SSL_VERIFY") \
                              in set(['True', 'true', 'Yes', 'yes', '1'])
@@ -96,7 +99,7 @@ if __name__ == "__main__":
 
 
 # #Here is an example of environment variables that need to be set
-# export SALT_MASTER_HOST=yoursaltmaster.com
+# export TF_salt_master=yoursaltmaster.com
 # export SALTAPI_PORT=8001
 # export SALTAPI_PASSWORD=saltterra
 # export SALTAPI_USERNAME=terrasalt
