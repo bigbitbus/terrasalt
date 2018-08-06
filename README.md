@@ -184,15 +184,20 @@ Similar `key.accept` and the `key.delete` API request commands are issued by the
 
 We have packaged up the salt-minion software installation and key acceptance/deletion operations in the terrasalt module in the `terraform/modules/tf_salt_mod` folder. This module is used in examples to spin up Amazon AWS, Microsoft Azure, and Google GCP VMs that can be downloaded from the terraform/{aws_/azure_/gcp_}example folders. In order to run these examples you will need to set several OS environment variables on the terraform machine; we have included a list of these environment variables for each provider in a file named `<provider>_env_var_example.md`.
 
+Be very mindful of when using your cloud credentials - _never-ever check them into version control!_. We have used environment variables to access all cloud credentials in this project (we assumed that the terraform machine is secured).
+
 ## FAQs
-1. _Why not just use salt cloud?_ If your cloud provider is well supported by salt cloud then salt cloud should be your first choice ifyou plan on using salt for configuration management and remote execution; in our case since we spin up VMs in providers that are not (well) supported by salt cloud we chose to go with Terraform. In general you can tell that terraform is the leader in multi-cloud orchestration software today with 
+1. _Why not just use salt cloud?_ If your cloud provider is well supported by salt cloud then salt cloud should be your first choice; in our case since we spin up VMs in providers that are not (well) supported by salt cloud we chose to go with Terraform. Terraform is the leader in multi-cloud orchestration software today.
 2. _When will Windows minions and windows terraform clients be supported?_ Very soon, this is an active focus area for us.
+3. _Why not use salt reactors/event bus for this instead of saltapi?_ We think saltapi is easier to implement (standard HTTP(S) protocol) in a data-center. Moreover, using the wheel client saltapi tools avoids further reactor/orchestrator configuration on the salt-master.
 
 ## Authors
 
-* **Sachin Agarwal** - *Initial work* - [BitBitBus](http://bigbitbus.com)
+* **Sachin Agarwal**  - [BitBitBus](http://bigbitbus.com)
 
 ### Contributors
+
+We welcome contributions from the community.
  * Your-name-here
  
 ## License
