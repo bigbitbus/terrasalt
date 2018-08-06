@@ -191,7 +191,7 @@ You can use the examples as starting points for using the terrasalt module with 
 ## FAQs
 1. _Why not just use salt cloud?_ If your cloud provider is well supported by salt cloud then salt cloud should be your first choice; in our case since we spin up VMs in providers that are not (well) supported by salt cloud we chose to go with Terraform. Terraform is the leader in multi-cloud orchestration software today.
 2. _When will Windows minions and windows terraform clients be supported?_ Very soon, this is an active focus area for us.
-3. _Why not use salt reactors/event bus for this instead of saltapi?_ We think saltapi is easier to implement (standard HTTP(S) protocol) in a data-center. Moreover, using the wheel client saltapi tools avoids further reactor/orchestrator configuration on the salt-master.
+3. _Why not use salt reactors/event bus for this instead of saltapi?_ We think saltapi is easier to implement (standard HTTP(S) protocol) because the terraform client does not need to be a salt-minion for this to work. The wheel client saltapi uses here avoids further reactor/orchestrator configuration on the salt-master. We may consider at salt's event driven infrastructure features when we integrate other non-minion terraform resources. 
 
 ## Authors
 
@@ -200,6 +200,7 @@ You can use the examples as starting points for using the terrasalt module with 
 ### Contributors
 
 We welcome contributions from the community.
+
  * Your-name-here
  
 ## License
