@@ -13,6 +13,12 @@ variable "ip" {
   description = "IP of the minion; this could be the private IP if the salt-master is reachable from the private network or it could be the public IP of the VM"
 }
 
+variable "dependence" {
+  type = "string"
+  description = "special variable used to force implicit dependency"
+}
+
+
 variable "salt_master" {
   type = "string"
   description = "FQDN or IP address of the salt-master"

@@ -13,7 +13,7 @@ module "awsvm1" {
 }
 
 
-# The ip variable also ensures that awsvm1 is completed before salt1 starts (implicit dependency detected by terraform)
+# The dependence also ensures that awsvm1 is completed before salt1 starts (implicit dependency detected by terraform)
 module "salt1" {
   source = "../modules/tf_mod_salt"
   salt_master = "${var.salt_master}"
@@ -21,5 +21,6 @@ module "salt1" {
   ssh_user = "${var.ssh_user}"
   key_path = "${var.key_path}"
   ip = "${module.awsvm1.ip}"
+  dependence = "${module.awsvm1.ip}"
   platformgrain = "${var.platformgrain}"
 }

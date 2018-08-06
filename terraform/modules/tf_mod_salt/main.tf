@@ -26,5 +26,10 @@ resource "null_resource" "install_configure_salt" {
     command = "python ${path.module}/files/httpsrequests.py  ${var.minion_id} key.delete"
     when = "destroy"
   }
+
+  #Dummy command to force use of dependence variable
+  provisioner "local-exec" {
+    command = "echo ${var.dependence} > /dev/null"
+  }
 }
 
