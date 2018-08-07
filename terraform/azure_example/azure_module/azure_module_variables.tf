@@ -38,12 +38,7 @@ variable "resource_group_name" {
   description = "Name of the resource group"
 }
 
-variable "security_group_id" {
+variable "network_interface_id" {
   type = "string"
-  description = "ID of the security group"
-}
-
-variable "subnet_id" {
-  type = "string"
-  description = "ID of the subnet where the NIC is created"
+  description = "id field of the network interface"
 }

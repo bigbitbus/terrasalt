@@ -12,30 +12,7 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-# Create a public IP
-resource "azurerm_public_ip" "myterraformpublicip" {
-  name                         = "myPublicIP-${var.instance_type}"
- location = "${var.region}"
-  resource_group_name          = "${var.resource_group_name}"
-  public_ip_address_allocation = "dynamic"
-  domain_name_label            = "salttest" # parameterize this (?)
-}
 
-# Create network interface
-resource "azurerm_network_interface" "myterraformnic" {
-  name                      = "myNIC-${var.instance_type}"
- location = "${var.region}"
-  resource_group_name       = "${var.resource_group_name}"
-  network_security_group_id = "${var.security_group_id}"
-
-  ip_configuration {
-    name                          = "myNicConfiguration--${var.instance_type}"
-    subnet_id                     = "${var.subnet_id}"
-    private_ip_address_allocation = "dynamic"
-    public_ip_address_id          = "${azurerm_public_ip.myterraformpublicip.id}"
-  }
-
-}
 
 # Create virtual machine
 
@@ -43,8 +20,7 @@ resource "azurerm_virtual_machine" "_my_azure_vm" {
   name = "my-azure-vm"
   location = "${var.region}"
   resource_group_name = "${var.resource_group_name}"
-  network_interface_ids = [
-    "${azurerm_network_interface.myterraformnic.id}"]
+  network_interface_ids = ["${var.network_interface_id}"]
   vm_size = "${var.instance_type}"
 
   storage_os_disk {
@@ -77,9 +53,6 @@ resource "azurerm_virtual_machine" "_my_azure_vm" {
   }
 }
 
-output "ip" {
-  value = "${azurerm_public_ip.myterraformpublicip.fqdn}"
-}
 
 #We will use this to force an implicit dependency so salt module runs after machine completes
 output "machineid" {

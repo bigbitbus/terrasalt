@@ -66,3 +66,4 @@ variable "platformgrain" {
   type        = "string"
   description = "The name of the platform - aws/gce/don/aze etc."
 }
+
