@@ -17,7 +17,7 @@
 # Create virtual machine
 
 resource "azurerm_virtual_machine" "_my_azure_vm" {
-  name = "my-azure-vm"
+  name = "aze-${var.instance_type}"
   location = "${var.region}"
   resource_group_name = "${var.resource_group_name}"
   network_interface_ids = ["${var.network_interface_id}"]
