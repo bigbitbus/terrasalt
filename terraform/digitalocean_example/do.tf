@@ -25,7 +25,7 @@ module "dovm1" {
 }
 
 
-# The dependence variable ensures that gcpvm1 is completed before salt1 starts (implicit dependency detected by terraform)
+# The dependence variable ensures that dovm1 is completed before salt1 starts (implicit dependency detected by terraform)
 module "salt1" {
   source = "../modules/tf_mod_salt"
   salt_master = "${var.salt_master}"

@@ -23,6 +23,7 @@ module "gcpvm1" {
   image = "${var.image}"
   instance_type = "${var.instance_type}"
   zone = "${var.zone}"
+  network_interface = "${var.network_interface}"
 }
 
 

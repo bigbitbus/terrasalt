@@ -27,3 +27,9 @@ variable "image" {
   type        = "string"
   description = "The OS image to use"
 }
+
+
+variable "network_interface" {
+  type        = "string"
+  description = "Name of the network e.g. default"
+}

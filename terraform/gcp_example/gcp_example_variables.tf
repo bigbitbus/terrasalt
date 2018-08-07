@@ -61,3 +61,8 @@ variable "platformgrain" {
   type = "string"
   description = "Example of a grain being set in the newly created minion host"
 }
+
+variable "network_interface" {
+  type        = "string"
+  description = "Name of the network e.g. default"
+}

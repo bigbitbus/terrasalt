@@ -13,7 +13,7 @@
 #   limitations under the License.
 
 resource "google_compute_instance" "_gcp_vm" {
-  name = "my-gcp-vm"
+  name = "gcp-${var.instance_type}"
   machine_type = "${var.instance_type}"
   zone = "${var.zone}"
   allow_stopping_for_update = true
@@ -25,7 +25,7 @@ resource "google_compute_instance" "_gcp_vm" {
   }
 
   network_interface {
-    network = "default"
+    network = "${var.network_interface}"
 
     access_config {
       # ephemeral external ip address
