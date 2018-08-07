@@ -39,7 +39,7 @@ resource "azurerm_virtual_machine" "_my_azure_vm" {
   }
 
   os_profile {
-    computer_name = "aze-${var.instance_type}"
+    computer_name = "azurehost"
     admin_username = "${var.ssh_user}"
   }
 
