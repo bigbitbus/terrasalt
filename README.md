@@ -2,7 +2,7 @@
 
 Terrasalt (Terraform + Salt) integrates [Hashicorp's Terraform](https://www.terraform.io/) cloud orchestration with [Salt](https://saltstack.com/) configuration management. This enables users to create infrastructure (e.g. virtual machines) using Terraform and then configure and manage the infrastructure using Salt.
 
-The inspiration for this project came when we switched from using [Salt cloud](https://docs.saltstack.com/en/latest/topics/cloud/) to Terraform. We missed the close integration between orchestration (Terraform) and configuration management (Salt) that salt cloud had provided out of the box. We wanted that a newly spun up VM to install salt-minion software and then to automatically register with our salt-master. We also wanted the VM to be de-registered from the salt-master when it was terminated. The terrasalt project was born.
+The inspiration for this project came when we switched from using [Salt cloud](https://docs.saltstack.com/en/latest/topics/cloud/) to Terraform. We missed the close integration between orchestration (Terraform) and configuration management (Salt) that salt cloud had provided out of the box. We wanted a newly spun up VM to install salt-minion software and then to automatically register with our salt-master. We also wanted the VM to be de-registered from the salt-master when it was terminated. The terrasalt project was born.
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ You will be adding the _Terrasalt_ module to your terraform infrastructure-as-co
 
 1. A configured salt-master capable of being connected from the new VMs that terraform spins up and capable of running salt API.
 2. Ability for the terraform machine to send an HTTP(s) request to the salt-master (including firewall rules to allow connecting from the Terraform machine to the salt-master via HTTPS on a user-configurable port).
-3. Python is installed on the terraform machine; also please install the python requirements.txt file included in this repository.
+3. Python is installed on the terraform machine; also please install the python packages in the requirements.txt file included in this repository.
 ```
 # In the shell you use to run terraform commands run
 
@@ -107,7 +107,7 @@ You can test the setup from your terraform machine. `curl` the following command
 $ curl -ski https://saltmaster.com:$1/login \
  -H 'Accept: application/json' \
  -d username='terrasalt' \
- -d password='sUp3r53cr3T' \
+ -d password='saltterra' \
  -d eauth='pam' \
  | python -m json.tool
 ```
@@ -191,7 +191,7 @@ You can use the examples as starting points for using the terrasalt module with 
 ## FAQs
 1. _Why not just use salt cloud?_ If your cloud provider is well supported by salt cloud then salt cloud should be your first choice; in our case since we spin up VMs in providers that are not (well) supported by salt cloud we chose to go with Terraform. Terraform is the leader in multi-cloud orchestration software today.
 2. _When will Windows minions and windows terraform clients be supported?_ Very soon, this is an active focus area for us.
-3. _Why not use salt reactors/event bus for this instead of saltapi?_ We think saltapi is easier to implement (standard HTTP(S) protocol) because the terraform client does not need to be a salt-minion for this to work. The wheel client saltapi uses here avoids further reactor/orchestrator configuration on the salt-master. We may consider at salt's event driven infrastructure features when we integrate other non-minion terraform resources. 
+3. _Why not use salt reactors/event bus for this instead of saltapi?_ We think saltapi is easier to implement (standard HTTP(S) protocol) because the terraform client does not need to be a salt-minion for this to work. The wheel client saltapi used here avoids further reactor/orchestrator configuration on the salt-master. We may consider at salt's event driven infrastructure features when we integrate other non-minion terraform cloud resources. 
 
 ## Authors
 
