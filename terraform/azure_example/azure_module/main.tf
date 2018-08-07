@@ -24,7 +24,7 @@ resource "azurerm_virtual_machine" "_my_azure_vm" {
   vm_size = "${var.instance_type}"
 
   storage_os_disk {
-    name = "myOsDisk"
+    name = "myOsDisk-${var.instance_type}"
     caching = "ReadWrite"
     create_option = "FromImage"
     managed_disk_type = "Standard_LRS"
@@ -39,7 +39,7 @@ resource "azurerm_virtual_machine" "_my_azure_vm" {
   }
 
   os_profile {
-    computer_name = "my-azure-vm"
+    computer_name = "aze-${var.instance_type}"
     admin_username = "${var.ssh_user}"
   }
 
