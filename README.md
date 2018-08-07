@@ -107,7 +107,7 @@ You can test the setup from your terraform machine. `curl` the following command
 $ curl -ski https://saltmaster.com:$1/login \
  -H 'Accept: application/json' \
  -d username='terrasalt' \
- -d password='sUp3r53cr3T' \
+ -d password='saltterra' \
  -d eauth='pam' \
  | python -m json.tool
 ```
