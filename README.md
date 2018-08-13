@@ -30,7 +30,10 @@ You will be adding the _Terrasalt_ module to your terraform infrastructure-as-co
 python -m pip install -r requirements.txt
 
 ```
-4. We have assumed that the new minion can reach the Internet - it runs salt-bootstrap to install minion software. If you are behind a corporate network and your VMs don't have internet accesss then this can easily be tweaked by adjusting the salt minion installation script of the module [here](https://github.com/bigbitbus/terrasalt/blob/master/terraform/modules/tf_mod_salt/files/installsaltminion.sh).
+4. We have assumed that the new minion can reach the Internet - it runs [salt-bootstrap](https://docs.saltstack.com/en/latest/topics/tutorials/salt_bootstrap.html) to install minion software. If you are behind a corporate network and your VMs don't have internet accesss then this can easily be tweaked by adjusting the salt minion installation script of the module [here](https://github.com/bigbitbus/terrasalt/blob/master/terraform/modules/tf_mod_salt/files/installsaltminion.sh).
+
+5. Similarly, if you need to install  a specific software version of the salt minion then please tweak the [same script](https://github.com/bigbitbus/terrasalt/blob/master/terraform/modules/tf_mod_salt/files/installsaltminion.sh) and change the installation options (refer to [salt bootstrap documentation](https://docs.saltstack.com/en/latest/topics/tutorials/salt_bootstrap.html) or use your package repository for example).
+
 ### Architecture
 
 Our aim is to add terraform-created VMs as minions of our  salt-master. For this the terraform machine needs to 
