@@ -2,7 +2,7 @@
 
 Terrasalt (Terraform + Salt) integrates [Hashicorp's Terraform](https://www.terraform.io/) cloud orchestration with [Salt](https://saltstack.com/) configuration management. This enables users to create infrastructure (e.g. virtual machines) using Terraform and then configure and manage the infrastructure using Salt.
 
-The inspiration for this project came when we switched from using [Salt cloud](https://docs.saltstack.com/en/latest/topics/cloud/) to Terraform. We missed the close integration between orchestration (Terraform) and configuration management (Salt) that salt cloud had provided out of the box. We wanted a newly spun up VM to install salt-minion software and then to automatically register with our salt-master. We also wanted the VM to be de-registered from the salt-master when it was terminated. In addition we wanted to set (salt) grains in these new VMs specified in our terraform scripts after the minion software was installed on the new VMs. The terrasalt project was born.
+The inspiration for this project came when we switched from using [Salt cloud](https://docs.saltstack.com/en/latest/topics/cloud/) to Terraform. We missed the close integration between orchestration (Terraform) and configuration management (Salt) that salt cloud had provided out of the box. We wanted a newly spun up VM to install salt-minion software and then to automatically register with our salt-master. We also wanted the VM to be de-registered from the salt-master when it was terminated. In addition we wanted to set (salt) grains in these new VMs from our terraform scripts. The terrasalt project was born.
 
 ## Getting Started
 
