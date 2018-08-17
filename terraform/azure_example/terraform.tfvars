@@ -16,4 +16,5 @@ region = "eastus"
 
 instance_type = "Standard_B1s"
 
-platformgrain = "aze"
+grain_keys = ["platformgrain","disk_file"]
+grain_vals = ["aze","/dev/xvdd"]

@@ -20,4 +20,6 @@ ssh_user = "root"
 
 image = "ubuntu-16-04-x64"
 
-platformgrain = "don"
+grain_keys = ["platformgrain","disk_file"]
+
+grain_vals = ["don","/dev/xvdd"]

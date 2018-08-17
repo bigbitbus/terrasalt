@@ -14,8 +14,8 @@
 
 provider "google" {
   credentials = "${file(var.json_account_file)}"
-  project     = "${var.project_name}"
-  region      = "${var.region}"
+  project = "${var.project_name}"
+  region = "${var.region}"
 }
 
 module "gcpvm1" {
@@ -31,10 +31,11 @@ module "gcpvm1" {
 module "salt1" {
   source = "../modules/tf_mod_salt"
   salt_master = "${var.salt_master}"
-  minion_id = "${var.platformgrain}-${var.instance_type}"
+  minion_id = "gcp-${var.instance_type}"
   ssh_user = "${var.ssh_user}"
   key_path = "${var.key_path}"
   ip = "${module.gcpvm1.ip}"
   dependence = "${module.gcpvm1.ip}"
-  platformgrain = "${var.platformgrain}"
+  grain_keys = "${var.grain_keys}"
+  grain_vals = "${var.grain_vals}"
 }

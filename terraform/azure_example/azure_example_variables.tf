@@ -62,8 +62,13 @@ variable "salt_master" {
   description = "FQDN or IP address of the salt master"
 }
 
-variable "platformgrain" {
-  type        = "string"
-  description = "The name of the platform - aws/gce/don/aze etc."
+#Make sure the grain_keys and grain_vals match on the array indices!!!
+variable "grain_keys" {
+  type        = "list"
+  description = "name of the grains"
 }
 
+variable "grain_vals" {
+  type = "list"
+  description = "values corresponding to grain keys"
+}

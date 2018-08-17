@@ -2,7 +2,7 @@
 
 Terrasalt (Terraform + Salt) integrates [Hashicorp's Terraform](https://www.terraform.io/) cloud orchestration with [Salt](https://saltstack.com/) configuration management. This enables users to create infrastructure (e.g. virtual machines) using Terraform and then configure and manage the infrastructure using Salt.
 
-The inspiration for this project came when we switched from using [Salt cloud](https://docs.saltstack.com/en/latest/topics/cloud/) to Terraform. We missed the close integration between orchestration (Terraform) and configuration management (Salt) that salt cloud had provided out of the box. We wanted a newly spun up VM to install salt-minion software and then to automatically register with our salt-master. We also wanted the VM to be de-registered from the salt-master when it was terminated. The terrasalt project was born.
+The inspiration for this project came when we switched from using [Salt cloud](https://docs.saltstack.com/en/latest/topics/cloud/) to Terraform. We missed the close integration between orchestration (Terraform) and configuration management (Salt) that salt cloud had provided out of the box. We wanted a newly spun up VM to install salt-minion software and then to automatically register with our salt-master. We also wanted the VM to be de-registered from the salt-master when it was terminated. In addition we wanted to set (salt) grains in these new VMs specified in our terraform scripts after the minion software was installed on the new VMs. The terrasalt project was born.
 
 ## Getting Started
 
@@ -186,6 +186,8 @@ Similar `key.accept` and the `key.delete` API request commands are issued by the
 #### The Terrasalt module
 
 We have packaged up the salt-minion software installation and key acceptance/deletion operations in the terrasalt module in the `terraform/modules/tf_salt_mod` folder. This module is used in examples to spin up Amazon AWS, Microsoft Azure, and Google GCP VMs that can be downloaded from the terraform/{aws_/azure_/gcp_}example folders. In order to run these examples you will need to set several OS environment variables on the terraform machine; we have included a list of these environment variables for each provider in a file named `<provider>_env_var_example.md`.
+
+If you need to set grains on the newly created minions then please fill out the input variable arrays "grain_keys" and "grain_vals" as shown in the examples.
 
 Be very mindful of when using your cloud credentials - _never-ever check them into version control!_. We have used environment variables to access all cloud credentials in this project (we assumed that the terraform machine is secured).
 

@@ -21,4 +21,5 @@ region = "us-east-1"
 
 instance_type = "t2.micro"
 
-platformgrain = "aws"
+grain_keys = ["platformgrain","disk_file"]
+grain_vals = ["aws","/dev/xvdd"]

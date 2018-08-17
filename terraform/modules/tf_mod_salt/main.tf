@@ -27,7 +27,7 @@ resource "null_resource" "install_configure_salt" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/installsaltminion.sh",
-      "sudo /tmp/installsaltminion.sh ${var.salt_master} ${var.minion_id} ${var.platformgrain}",
+      "sudo /tmp/installsaltminion.sh ${var.salt_master} ${var.minion_id}",
     ]
     on_failure = "continue"
   }
@@ -47,3 +47,20 @@ resource "null_resource" "install_configure_salt" {
   }
 }
 
+resource "null_resource" "set_grains" {
+  connection {
+    user = "${var.ssh_user}"
+    private_key = "${file(var.key_path)}"
+    host = "${var.ip}"
+  }
+
+  count = "${length(var.grain_keys)}"
+  provisioner "remote-exec" {
+    inline = [
+      "sudo salt-call grains.set ${element(var.grain_keys, count.index )} ${element(var.grain_vals, count.index )}"
+    ]
+    on_failure = "continue"
+  }
+  depends_on = [
+    "null_resource.install_configure_salt"]
+}

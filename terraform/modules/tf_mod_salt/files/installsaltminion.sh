@@ -24,8 +24,6 @@ cat << EOF | sudo tee /etc/salt/minion.d/min.conf
 mine_interval: 1
 master: $1
 id: $2
-grains:
-  platformgrain: $3
 # Terraform's installsaltminion.sh added config end
 EOF
 service salt-minion restart

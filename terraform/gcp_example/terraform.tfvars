@@ -20,6 +20,7 @@ instance_type = "g1-small"
 
 image = "ubuntu-1604-xenial-v20180509"
 
-platformgrain = "gcp"
-
 network_interface = "default"
+
+grain_keys = ["platformgrain","disk_file"]
+grain_vals = ["gcp","/dev/xvdd"]

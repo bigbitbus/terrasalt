@@ -29,10 +29,11 @@ module "dovm1" {
 module "salt1" {
   source = "../modules/tf_mod_salt"
   salt_master = "${var.salt_master}"
-  minion_id = "${var.platformgrain}-${var.instance_type}"
+  minion_id = "don-${var.instance_type}"
   ssh_user = "${var.ssh_user}"
   key_path = "${var.pvt_key}"
   ip = "${module.dovm1.ip}"
   dependence = "${module.dovm1.ip}"
-  platformgrain = "${var.platformgrain}"
+  grain_keys = "${var.grain_keys}"
+  grain_vals = "${var.grain_vals}"
 }

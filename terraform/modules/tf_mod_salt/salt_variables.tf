@@ -49,8 +49,14 @@ variable "salt_bootstrap_options" {
   default = ""
 }
 
-variable "platformgrain" {
-  type        = "string"
-  description = "An example of a static grain being set in the minion host"
+#Make sure the grain_keys and grain_vals match on the array indices!!!
+variable "grain_keys" {
+  type        = "list"
+  description = "name of the grains"
+}
+
+variable "grain_vals" {
+  type = "list"
+  description = "values corresponding to grain keys"
 }
 

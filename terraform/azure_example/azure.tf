@@ -120,10 +120,11 @@ module "azurevm1" {
 module "salt1" {
   source = "../modules/tf_mod_salt"
   salt_master = "${var.salt_master}"
-  minion_id = "${var.platformgrain}-${var.instance_type}"
+  minion_id = "aze-${var.instance_type}"
   ssh_user = "${var.ssh_user}"
   key_path = "${var.key_path}"
   ip = "${azurerm_public_ip.myterraformpublicip.fqdn}"
   dependence = "${module.azurevm1.machineid}"
-  platformgrain = "${var.platformgrain}"
+  grain_keys = "${var.grain_keys}"
+  grain_vals = "${var.grain_vals}"
 }
