@@ -201,7 +201,7 @@ You can use the examples as starting points for using the terrasalt module with 
 
 ## Authors
 
-* **Sachin Agarwal**  - [BitBitBus](http://bigbitbus.com)
+* **Sachin Agarwal**  - [BigBitBus](http://bigbitbus.com)
 
 ### Contributors
 
