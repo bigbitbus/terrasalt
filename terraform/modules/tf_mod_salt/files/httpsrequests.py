@@ -47,8 +47,8 @@ def get_saltapi_token():
     """
 
     try:
-        saltapi_username = os.environ.get("SALTAPI_USERNAME")
-        saltapi_password = os.environ.get("SALTAPI_PASSWORD")
+        saltapi_username = os.environ.get("SALTAPI_CREDENTIALS_USR")
+        saltapi_password = os.environ.get("SALTAPI_CREDENTIALS_PSW")
         saltapi_eauth = os.environ.get("SALTAPI_EAUTH")
         saltapi_ssl_verify = os.environ.get("SALTAPI_SSL_VERIFY") \
                              in set(['True', 'true', 'Yes', 'yes', '1'])
@@ -115,8 +115,8 @@ if __name__ == "__main__":
 # #Here is an example of environment variables that need to be set
 # export TF_salt_master=yoursaltmaster.com
 # export SALTAPI_PORT=8001
-# export SALTAPI_PASSWORD=saltterra
-# export SALTAPI_USERNAME=terrasalt
+# export SALTAPI_CREDENTIALS_PSW=saltterra
+# export SALTAPI_CREDENTIALS_USR=terrasalt
 # export SALTAPI_EAUTH=pam
 # export SALTAPI_SSL_VERIFY=False
 # export SALTAPI_PROTO=HTTPS

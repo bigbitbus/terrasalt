@@ -13,8 +13,8 @@ export TF_VAR_key_data="ssh public key data e.g. contents of id_rsa.pub"
 
 export TF_VAR_salt_master=my.saltmaster.com #salt master fqdn or IP
 export SALTAPI_PORT= 8000 #whatever you set this to in the saltapi configuration
-export SALTAPI_USERNAME=terrasalt #salt api username
-export SALTAPI_PASSWORD=saltterra #salt api password
+export SALTAPI_CREDENTIALS_USR=terrasalt #salt api username
+export SALTAPI_CREDENTIALS_PSW=saltterra #salt api password
 export SALTAPI_EAUTH=pam # or whatever your salt master is setup for  e.g. ldap
 export SALTAPI_SSL_VERIFY=False # or import the saltapi ssl cert
 export SALTAPI_PROTO=HTTPS #recommend not using HTTP since your saltapi
